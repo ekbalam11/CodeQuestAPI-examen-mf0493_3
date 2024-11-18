@@ -35,10 +35,14 @@ const getRandomQuestions = async (req, res) => {
 			amount = 30;
 		}
 
-		const randomQuestion = await getRandomQuestionsDB(amount, {difficulty});
-		console.log("🚀 ~ getRandomQuestions ~ randomQuestion:", randomQuestion)
-		
+		let randomQuestion;
 
+		if(!difficulty) {
+			randomQuestion = await getRandomQuestionsDB(amount); 
+		} else {
+			randomQuestion = await getRandomQuestionsDB(amount, {difficulty});
+		}
+		
 		res.status(200).json({
 			message: "Random questions delivered successfully",
 			results: randomQuestion,
