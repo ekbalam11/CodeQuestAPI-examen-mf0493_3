@@ -79,7 +79,7 @@ const getRandomQuestionsDB = async (amount, filter = {}) => {
             { $match: matchCondition },
             { $sample: { size: amount } },
         ]);
-        
+        console.log("filter: ", filter)
         return questions;
     } catch (error) {
         throw new Error("Error fetching random questions from the database.");

@@ -23,8 +23,10 @@ const { generateQuestions, getRandomQuestionsDB } = require('../services/questio
  */
 const getRandomQuestions = async (req, res) => {
 	try {
-		let { amount } = req.query;
+		let { amount, difficulty } = req.query;
+		console.log("🚀 ~ getRandomQuestions ~ difficulty:", difficulty)
 		amount = parseInt(amount, 10);
+		// difficulty = generateQuestions.find({ category: difficulty})
 
 		//validation of amount
 		if (isNaN(amount) || amount < 1) {
@@ -33,7 +35,8 @@ const getRandomQuestions = async (req, res) => {
 			amount = 30;
 		}
 
-		const randomQuestion = await getRandomQuestionsDB(amount);
+		const randomQuestion = await getRandomQuestionsDB(amount, {difficulty});
+		console.log("🚀 ~ getRandomQuestions ~ randomQuestion:", randomQuestion)
 		
 
 		res.status(200).json({

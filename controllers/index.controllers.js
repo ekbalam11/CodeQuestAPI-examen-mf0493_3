@@ -166,7 +166,7 @@ const createNewQuestion = async (req, res) => {
 			res.status(201).render('new-question.ejs', { message });
 		} else {
 			let message = 'We cannot save your question. You must mark at least one correct answer.'
-			res.status(200).render('new-question.ejs', { message, }); //Check status with Oscar
+			res.status(200).render('new-question.ejs', { message }); //Check status with Oscar
 
 		}
 
